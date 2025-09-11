@@ -1,0 +1,776 @@
+/* General styles and resets */
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+    line-height: 1.6;
+    color: #333;
+    background-color: #f0f2f5;
+}
+
+.container {
+    max-width: 1140px;
+    margin: 0 auto;
+    padding: 0 15px;
+}
+
+h1, h2, h3 {
+    margin-bottom: 0.5rem;
+    font-weight: 600;
+    color: #2c3e50;
+}
+
+h1 { font-size: 2.5rem; }
+h2 { font-size: 1.75rem; }
+h3 { font-size: 1.5rem; }
+
+a {
+    text-decoration: none;
+    color: #3498db;
+}
+
+ul {
+    list-style: none;
+}
+
+/* Header */
+.header {
+    background-color: #fff;
+    padding: 1rem 0;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+}
+
+.header .container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.header-logo {
+    height: 40px;
+    /* width: 60px; */
+}
+
+.header .search-bar {
+    display: flex;
+    border: 1px solid #ddd;
+    border-radius: 50px;
+    overflow: hidden;
+    flex-grow: 1;
+    max-width: 400px;
+    margin: 0 2rem;
+}
+
+.header .search-bar input {
+    border: none;
+    padding: 0.75rem 1.25rem;
+    outline: none;
+    flex-grow: 1;
+    background-color: #f7f9fa;
+}
+
+.header .search-bar button {
+    background-color: transparent;
+    border: none;
+    padding: 0 1rem;
+    cursor: pointer;
+    color: #777;
+}
+
+.header .nav {
+    display: flex;
+    align-items: center;
+}
+
+.user-profile a {
+    font-size: 2rem; /* Atur ukuran ikon profil */
+    color: #555; /* Atur warna ikon */
+    transition: color 0.3s;
+}
+
+.user-profile a:hover {
+    color: #3498db; /* Ubah warna saat di-hover */
+}
+
+/* Course Page Layout */
+.course-page {
+    padding-top: 2rem;
+}
+
+.course-header-section {
+    background-color: #ffffff;
+    color: #fff;
+    padding: 2rem 0;
+    margin-bottom: 2rem;
+}
+
+.course-details .breadcrumbs {
+    font-size: 0.8rem;
+    text-transform: uppercase;
+    color: #bdc3c7;
+    letter-spacing: 1px;
+}
+
+.course-details h1 {
+    color: #333;
+    margin: 0.5rem 0;
+}
+
+.course-details .instructor {
+    color: #ce2a2a;
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+}
+
+.course-details .rating {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    background-color: #f1c40f;
+    color: #333;
+    padding: 0.2rem 0.5rem;
+    border-radius: 4px;
+    font-weight: 600;
+}
+
+.main-content-section {
+    display: flex;
+    gap: 2rem;
+    align-items: flex-start;
+}
+
+.course-main-content {
+    flex: 3;
+}
+
+.sidebar {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+}
+
+.video-container {
+    position: relative;
+    padding-top: 56.25%; /* 16:9 aspect ratio */
+    background-color: #000;
+    border-radius: 8px;
+    overflow: hidden;
+    margin-bottom: 2rem;
+}
+
+.video-placeholder {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: url('https://placehold.co/1280x720/000000/FFFFFF.png?text=VIDEO+PREVIEW') center center / cover no-repeat;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: #fff;
+    font-size: 4rem;
+}
+
+.course-tabs {
+    display: flex;
+    border-bottom: 1px solid #e0e0e0;
+    margin-bottom: 1.5rem;
+}
+
+.course-tabs a {
+    padding: 1rem 1.5rem;
+    color: #777;
+    font-weight: 600;
+    position: relative;
+}
+
+.course-tabs a.active {
+    color: #3498db;
+}
+
+.course-tabs a.active::after {
+    content: '';
+    position: absolute;
+    bottom: -1px;
+    left: 0;
+    width: 100%;
+    height: 3px;
+    background-color: #3498db;
+}
+
+.about-course {
+    background-color: #fff;
+    padding: 2rem;
+    border-radius: 8px;
+    margin-bottom: 2rem; /* Tambahkan atau ubah baris ini */
+    box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+}
+
+/* Gaya untuk bagian silabus */
+.syllabus {
+    background-color: #fff;
+    padding: 2rem;
+    border-radius: 8px;
+    margin-bottom: 1.5rem;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+}
+
+.syllabus-item {
+    border: 1px solid #e0e0e0;
+    border-radius: 8px;
+    margin-bottom: 1rem;
+    overflow: hidden;
+}
+
+.syllabus-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1rem 1.5rem;
+    cursor: pointer;
+    background-color: #f7f9fa;
+    transition: background-color 0.2s;
+}
+
+.syllabus-header:hover {
+    background-color: #f1f3f5;
+}
+
+.syllabus-header h4 {
+    margin: 0;
+    color: #333;
+}
+
+.syllabus-meta {
+    font-size: 0.9rem;
+    color: #777;
+}
+
+.syllabus-meta i {
+    margin-left: 1rem;
+    transition: transform 0.3s;
+}
+
+.syllabus-header.active .syllabus-meta i {
+    transform: rotate(180deg);
+}
+
+.syllabus-content {
+    display: none;
+    padding: 0 1.5rem;
+    border-top: 1px solid #e0e0e0;
+}
+
+.syllabus-header.active + .syllabus-content {
+    display: block;
+}
+
+.lesson-list {
+    padding: 1rem 0;
+}
+
+.lesson-list li {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    padding: 0.75rem 0;
+    color: #555;
+    border-bottom: 1px solid #eee;
+}
+
+.lesson-list li:last-child {
+    border-bottom: none;
+}
+
+.lesson-list li .lesson-duration {
+    margin-left: auto;
+    color: #999;
+    font-size: 0.8rem;
+}
+
+/* Course Benefits Section */
+.course-benefits {
+    background-color: #fff;
+    padding: 2rem;
+    border-radius: 8px;
+    margin-bottom: 1.5rem;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+}
+
+.course-benefits h2 {
+    margin-bottom: 1.5rem;
+}
+
+.benefits-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1.5rem;
+}
+
+.benefit-item {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+}
+
+.benefit-item i {
+    color: #27ae60;
+    font-size: 1.25rem;
+}
+
+.benefit-item p {
+    margin: 0;
+    line-height: 1.4;
+}
+
+/* Responsive styles */
+@media (max-width: 768px) {
+    .benefits-grid {
+        grid-template-columns: 1fr;
+    }
+}
+
+/* Sidebar */
+.course-card, .masterclass-card {
+    background-color: #fff;
+    padding: 2rem;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+}
+
+.course-card .price {
+    font-size: 2rem;
+    font-weight: 700;
+    color: #2c3e50;
+    display: inline-block;
+}
+
+.course-card .price span {
+    font-size: 1rem;
+    color: #777;
+    text-decoration: line-through;
+    margin-left: 0.5rem;
+}
+
+.course-card .discount {
+    background-color: #e74c3c;
+    color: #fff;
+    padding: 0.2rem 0.5rem;
+    border-radius: 4px;
+    font-size: 0.8rem;
+    margin-left: 0.5rem;
+}
+
+.course-card .btn-buy, .btn-wishlist {
+    display: block;
+    width: 100%;
+    padding: 1rem;
+    border-radius: 50px;
+    font-weight: 600;
+    cursor: pointer;
+    margin-top: 1rem;
+    transition: background-color 0.3s;
+}
+
+.course-card .btn-buy {
+    background-color: #3498db;
+    color: #fff;
+    border: none;
+}
+
+.course-card .btn-buy:hover {
+    background-color: #2980b9;
+}
+
+.course-card .btn-wishlist {
+    background-color: #fff;
+    color: #3498db;
+    border: 1px solid #3498db;
+}
+
+.course-card .btn-wishlist:hover {
+    background-color: #f1f7fc;
+}
+
+.course-card .course-info-list {
+    margin-top: 1.5rem;
+}
+
+.course-card .course-info-list li {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    margin-bottom: 0.75rem;
+    color: #777;
+}
+
+.masterclass-card {
+    background-color: #2c3e50;
+    color: #fff;
+    text-align: center;
+    background-image: url('https://placehold.co/300x400/1abc9c/FFFFFF.png?text=MASTERCLASS');
+    background-size: cover;
+    background-position: center;
+    padding: 3rem 1.5rem;
+    border-radius: 8px;
+}
+
+.masterclass-card p, .masterclass-card h3 {
+    color: #fff;
+}
+
+.masterclass-card p:first-child {
+    font-size: 0.8rem;
+    text-transform: uppercase;
+    font-weight: 600;
+    letter-spacing: 1px;
+}
+
+.masterclass-card h3 {
+    margin: 0.5rem 0 1rem;
+}
+
+.masterclass-card a {
+    display: inline-block;
+    background-color: #fff;
+    color: #3498db;
+    padding: 0.75rem 1.5rem;
+    border-radius: 50px;
+    font-weight: 600;
+}
+
+/* CTA Section */
+.cta-section {
+    background-color: #3498db;
+    color: #fff;
+    padding: 3rem 0;
+    margin: 2rem 0;
+    border-radius: 12px;
+}
+
+.cta-section .container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 2rem;
+}
+
+.cta-section h2 {
+    color: #fff;
+    font-size: 2rem;
+}
+
+.cta-section p {
+    color: #f0f2f5;
+    opacity: 0.8;
+}
+
+.cta-form {
+    display: flex;
+    gap: 1rem;
+}
+
+.cta-form input {
+    padding: 1rem 1.5rem;
+    border-radius: 50px;
+    border: none;
+    outline: none;
+    min-width: 250px;
+}
+
+.cta-form button {
+    background-color: #2c3e50;
+    color: #fff;
+    padding: 1rem 2rem;
+    border: none;
+    border-radius: 50px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.cta-form button:hover {
+    background-color: #334e6e;
+}
+
+/* Footer */
+.footer {
+    background-color: #2c3e50;
+    color: #bdc3c7;
+    padding: 3rem 0 1rem;
+}
+
+.footer .footer-grid {
+    display: grid;
+    grid-template-columns: 2fr 1fr 1fr 1fr;
+    gap: 2rem;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    padding-bottom: 2rem;
+    margin-bottom: 1rem;
+}
+
+.footer .footer-logo {
+    font-weight: 800;
+    font-size: 1.5rem;
+    color: #fff;
+}
+
+.footer h4 {
+    color: #fff;
+    margin-bottom: 1rem;
+    font-size: 1rem;
+}
+
+.footer ul li {
+    margin-bottom: 0.75rem;
+}
+
+.footer ul a {
+    color: #bdc3c7;
+}
+
+.footer ul a:hover {
+    color: #fff;
+}
+
+.footer .copyright {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.footer .social-icons a {
+    color: #bdc3c7;
+    font-size: 1.25rem;
+    margin-left: 1rem;
+}
+
+.footer .social-icons a:hover {
+    color: #fff;
+}
+
+/* Responsive styles */
+@media (max-width: 768px) {
+    .header .container {
+        flex-wrap: wrap;
+        justify-content: center;
+    }
+    .header .search-bar {
+        order: 3;
+        width: 100%;
+        margin-top: 1rem;
+    }
+    .header .nav {
+        order: 2;
+    }
+
+    .main-content-section {
+        flex-direction: column;
+    }
+
+    .cta-section .container {
+        flex-direction: column;
+        text-align: center;
+    }
+
+    .cta-form {
+        flex-direction: column;
+        width: 100%;
+    }
+
+    .cta-form input {
+        width: 100%;
+        min-width: auto;
+    }
+
+    .footer .footer-grid {
+        grid-template-columns: 1fr 1fr;
+    }
+
+    .footer .copyright {
+        flex-direction: column;
+        gap: 1rem;
+        text-align: center;
+    }
+}
+
+/* Mentor Profile Section */
+.mentor-profile {
+    background-color: #fff;
+    padding: 2rem;
+    border-radius: 8px;
+    margin-bottom: 1.5rem;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+}
+
+.mentor-profile h2 {
+    margin-bottom: 1.5rem;
+}
+
+.mentor-card {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+}
+
+.mentor-info {
+    display: flex;
+    align-items: center;
+    gap: 1.5rem;
+}
+
+.mentor-avatar {
+    width: 100px;
+    height: 100px;
+    border-radius: 50%;
+    overflow: hidden;
+    flex-shrink: 0;
+}
+
+.mentor-avatar img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.mentor-details h3 {
+    margin-top: 0;
+    margin-bottom: 0.5rem;
+    color: #2c3e50;
+}
+
+.mentor-details .mentor-bio {
+    color: #777;
+    margin-bottom: 1rem;
+}
+
+.mentor-stats {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1rem;
+    color: #555;
+    font-size: 0.9rem;
+}
+
+.mentor-stats span i {
+    color: #3498db;
+    margin-right: 0.5rem;
+}
+
+.mentor-specialties {
+    margin-top: 1rem;
+}
+
+.mentor-specialties h4 {
+    margin-bottom: 1rem;
+}
+
+.mentor-specialties ul {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1rem;
+}
+
+.mentor-specialties ul li {
+    background-color: #f0f2f5;
+    padding: 0.5rem 1rem;
+    border-radius: 20px;
+    font-size: 0.9rem;
+    color: #555;
+}
+
+.mentor-specialties ul li i {
+    margin-right: 0.5rem;
+    color: #3498db;
+}
+
+/* Responsive styles for mentor section */
+@media (max-width: 576px) {
+    .mentor-info {
+        flex-direction: column;
+        text-align: center;
+    }
+
+    .mentor-specialties ul {
+        flex-direction: column;
+        text-align: left;
+    }
+}
+
+
+/* button */
+/* From Uiverse.io by vinodjangid07 */
+.Btn {
+    position: relative;
+    width: 150px;
+    height: 55px;
+    border-radius: 45px;
+    border: none;
+    background-color: #0047AB; /* Warna biru tua dari logo */
+    color: white;
+    box-shadow: 
+        0px 10px 10px #70A7CC inset,
+        0px 5px 10px rgba(5, 5, 5, 0.212),
+        0px -10px 10px #32CD32 inset; /* Warna hijau cerah dari logo */
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.Btn::before {
+    width: 70%;
+    height: 2px;
+    position: absolute;
+    background-color: rgba(250, 250, 250, 0.678);
+    content: "";
+    filter: blur(1px);
+    top: 7px;
+    border-radius: 50%;
+}
+
+.Btn::after {
+    width: 70%;
+    height: 2px;
+    position: absolute;
+    background-color: rgba(250, 250, 250, 0.137);
+    content: "";
+    filter: blur(1px);
+    bottom: 7px;
+    border-radius: 50%;
+}
+
+.Btn:hover {
+    animation: jello-horizontal 0.9s both;
+}
+
+@keyframes jello-horizontal {
+    0% {
+        transform: scale3d(1, 1, 1);
+    }
+    30% {
+        transform: scale3d(1.25, 0.75, 1);
+    }
+    40% {
+        transform: scale3d(0.75, 1.25, 1);
+    }
+    50% {
+        transform: scale3d(1.15, 0.85, 1);
+    }
+    65% {
+        transform: scale3d(0.95, 1.05, 1);
+    }
+    75% {
+        transform: scale3d(1.05, 0.95, 1);
+    }
+    100% {
+        transform: scale3d(1, 1, 1);
+    }
+}
