@@ -1,0 +1,231 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>INOVINDO ACADDEMY</title>
+    <!-- Favicon -->
+    <link rel="icon" type="image/png" href="https://inovindoacademy.com/assets/images/inovindo.png"/>
+    <!-- Impor Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Impor Google Fonts (Inter) -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <!-- Impor AlpineJS untuk Interaktivitas -->
+    <script src="//unpkg.com/alpinejs" defer></script>
+    <link rel="stylesheet" href="materi.css">
+</head>
+<body class="bg-gradient-to-br from-blue-50 via-white to-green-50">
+    <!-- Header -->
+    <header class="py-4 bg-white/80 backdrop-blur-md rounded-b-xl flex-shrink-0 sticky top-0 z-50 shadow-sm">
+        <div class="w-full px-2 sm:px-4 md:px-8 lg:px-16">
+            <nav class="flex flex-col md:flex-row justify-between items-center gap-4 md:gap-0">
+                <div class="flex items-center space-x-8">
+                    <a href="#">
+                        <img src="https://inovindoacademy.com/assets/images/logo.png" alt="Logo Inovindo Academy" class="h-10 w-auto"/>
+                    </a>
+                    <!-- Dropdown Kategori -->
+                    <div class="relative hidden md:block" id="category-container">
+                        <button id="category-button" class="flex items-center text-gray-600 hover:text-blue-600 focus:outline-none">
+                            <span>Categories</span>
+                            <svg class="w-4 h-4 ml-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/>
+                            </svg>
+                        </button>
+                        <div id="category-dropdown" class="absolute left-0 mt-2 w-48 bg-white rounded-lg shadow-xl py-2 hidden z-20">
+                            <a href="#" class="block px-4 py-2 text-gray-800 hover:bg-blue-50">Web Development</a>
+                            <a href="#" class="block px-4 py-2 text-gray-800 hover:bg-blue-50">Data Science</a>
+                            <a href="#" class="block px-4 py-2 text-gray-800 hover:bg-blue-50">Digital Marketing</a>
+                            <a href="#" class="block px-4 py-2 text-gray-800 hover:bg-blue-50">UI/UX Design</a>
+                        </div>
+                    </div>
+                </div>
+                <!-- Search Bar -->
+                <div class="relative hidden sm:block flex-1 max-w-xs">
+                    <input type="text" placeholder="Search courses" class="w-full bg-gray-100 border border-gray-200 rounded-full py-2 pl-10 pr-4 focus:outline-none focus:ring-2 focus:ring-blue-500 transition-all"/>
+                    <svg class="w-5 h-5 text-gray-400 absolute left-3 top-1/2 -translate-y-1/2" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"/>
+                    </svg>
+                </div>
+                <!-- Profile -->
+                <div class="flex items-center space-x-4">
+                    <a href="#" class="text-gray-600 hover:text-gray-900">Makise</a>
+                    <div class="relative" id="profile-container">
+                        <button id="profile-button" class="focus:outline-none">
+                            <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRso_3drFqG2fL3pQYfC4Ojx27xAZwv5BR9mw&s" alt="User profile" class="w-10 h-10 rounded-full object-cover"/>
+                        </button>
+                        <div id="profile-dropdown" class="absolute right-0 mt-2 w-48 bg-white rounded-lg shadow-xl py-2 hidden z-20">
+                            <a href="#" class="block px-4 py-2 text-gray-800 hover:bg-gray-100">Profil Saya</a>
+                            <a href="#" class="block px-4 py-2 text-gray-800 hover:bg-gray-100">Course Saya</a>
+                            <a href="#" class="block px-4 py-2 text-gray-800 hover:bg-gray-100">Pengaturan</a>
+                            <div class="border-t border-gray-100 my-1"></div>
+                            <a href="#" class="block px-4 py-2 text-gray-800 hover:bg-gray-100">Keluar</a>
+                        </div>
+                    </div>
+                </div>
+            </nav>
+        </div>
+    </header>
+    <!-- Konten Utama -->
+    <div class="flex flex-col lg:flex-row px-2 sm:px-4 md:px-8 lg:px-16 py-8 gap-8">
+        <!-- Sidebar Materi -->
+        <aside class="w-full lg:w-1/3 lg:max-w-sm flex-shrink-0">
+            <div class="sticky top-28">
+                 <h2 class="text-xl font-bold text-gray-800 mb-4 bg-transparent py-2">Daftar Materi</h2>
+                <div x-data="{ openSections: {1: true, 2: false, 3: false, 4: false} }" class="space-y-2">
+                    <!-- Grup Materi 1 -->
+                    <div>
+                        <button @click="openSections[1] = !openSections[1]" class="w-full flex justify-between items-center font-semibold text-gray-700 px-3 py-2 text-left hover:bg-blue-50 rounded-md">
+                            <span>Pendahuluan Desain Grafis</span>
+                            <svg :class="{'rotate-180': openSections[1]}" class="w-5 h-5 text-gray-500 transform transition-transform duration-300" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg>
+                        </button>
+                        <div x-show="openSections[1]" x-transition x-cloak class="space-y-1 pl-3 mt-1">
+                            <a href="#" class="flex items-center space-x-3 p-3 text-sm rounded-lg bg-emerald-50 text-emerald-800 border-l-4 border-emerald-500">
+                                <svg class="w-5 h-5 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"></path></svg>
+                                <span>1. Sejarah dan Perkembangan Desain</span>
+                            </a>
+                            <a href="#" class="flex items-center space-x-3 p-3 text-sm rounded-lg bg-blue-50 text-blue-800 border-l-4 border-blue-500 font-semibold">
+                                <svg class="w-5 h-5 flex-shrink-0 animate-pulse" fill="currentColor" viewBox="0 0 20 20"><path d="M10 12a2 2 0 100-4 2 2 0 000 4z"></path><path fill-rule="evenodd" d="M.458 10C1.732 5.943 5.523 3 10 3s8.268 2.943 9.542 7c-1.274 4.057-5.064 7-9.542 7S1.732 14.057.458 10zM14 10a4 4 0 11-8 0 4 4 0 018 0z" clip-rule="evenodd"></path></svg>
+                                <span>2. Prinsip Dasar Desain Grafis</span>
+                            </a>
+                            <a href="#" class="flex items-center space-x-3 p-3 text-sm rounded-lg hover:bg-blue-50 text-gray-600">
+                                <svg class="w-5 h-5 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14.752 11.168l-3.197-2.132A1 1 0 0010 9.87v4.263a1 1 0 001.555.832l3.197-2.132a1 1 0 000-1.664z"></path><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
+                                <span>3. Elemen-elemen Visual</span>
+                            </a>
+                            <a href="#" class="flex items-center space-x-3 p-3 text-sm rounded-lg hover:bg-blue-50 text-gray-600">
+                                <svg class="w-5 h-5 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14.752 11.168l-3.197-2.132A1 1 0 0010 9.87v4.263a1 1 0 001.555.832l3.197-2.132a1 1 0 000-1.664z"></path><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
+                                <span>4. Teori Warna dalam Desain</span>
+                            </a>
+                        </div>
+                    </div>
+                    <!-- Grup Materi 2 -->
+                    <div class="border-t border-gray-200 pt-2">
+                        <button @click="openSections[2] = !openSections[2]" class="w-full flex justify-between items-center font-semibold text-gray-700 px-3 py-2 text-left hover:bg-blue-50 rounded-md">
+                            <span>Software Desain</span>
+                            <svg :class="{'rotate-180': openSections[2]}" class="w-5 h-5 text-gray-500 transform transition-transform duration-300" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg>
+                        </button>
+                        <div x-show="openSections[2]" x-transition x-cloak class="space-y-1 pl-3 mt-1">
+                            <a href="#" class="flex items-center space-x-3 p-3 text-sm rounded-lg hover:bg-blue-50 text-gray-600">
+                                <svg class="w-5 h-5 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14.752 11.168l-3.197-2.132A1 1 0 0010 9.87v4.263a1 1 0 001.555.832l3.197-2.132a1 1 0 000-1.664z"></path><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
+                                <span>5. Pengenalan Adobe Photoshop</span>
+                            </a>
+                            <a href="#" class="flex items-center space-x-3 p-3 text-sm rounded-lg hover:bg-blue-50 text-gray-600">
+                                <svg class="w-5 h-5 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14.752 11.168l-3.197-2.132A1 1 0 0010 9.87v4.263a1 1 0 001.555.832l3.197-2.132a1 1 0 000-1.664z"></path><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
+                                <span>6. Menguasai Adobe Illustrator</span>
+                            </a>
+                        </div>
+                    </div>
+                    <!-- Grup Materi 3 -->
+                    <div class="border-t border-gray-200 pt-2">
+                        <button @click="openSections[3] = !openSections[3]" class="w-full flex justify-between items-center font-semibold text-gray-700 px-3 py-2 text-left hover:bg-blue-50 rounded-md">
+                            <span>Tipografi & Layout</span>
+                            <svg :class="{'rotate-180': openSections[3]}" class="w-5 h-5 text-gray-500 transform transition-transform duration-300" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg>
+                        </button>
+                        <div x-show="openSections[3]" x-transition x-cloak class="space-y-1 pl-3 mt-1">
+                            <a href="#" class="flex items-center space-x-3 p-3 text-sm rounded-lg hover:bg-blue-50 text-gray-600">
+                                <svg class="w-5 h-5 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14.752 11.168l-3.197-2.132A1 1 0 0010 9.87v4.263a1 1 0 001.555.832l3.197-2.132a1 1 0 000-1.664z"></path><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
+                                <span>7. Dasar-dasar Tipografi</span>
+                            </a>
+                            <a href="#" class="flex items-center space-x-3 p-3 text-sm rounded-lg hover:bg-blue-50 text-gray-600">
+                                <svg class="w-5 h-5 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14.752 11.168l-3.197-2.132A1 1 0 0010 9.87v4.263a1 1 0 001.555.832l3.197-2.132a1 1 0 000-1.664z"></path><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
+                                <span>8. Prinsip Layout & Komposisi</span>
+                            </a>
+                        </div>
+                    </div>
+                    <!-- Grup Materi 4 -->
+                    <div class="border-t border-gray-200 pt-2">
+                        <button @click="openSections[4] = !openSections[4]" class="w-full flex justify-between items-center font-semibold text-gray-700 px-3 py-2 text-left hover:bg-blue-50 rounded-md">
+                            <span>Proyek Desain Akhir</span>
+                            <svg :class="{'rotate-180': openSections[4]}" class="w-5 h-5 text-gray-500 transform transition-transform duration-300" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg>
+                        </button>
+                        <div x-show="openSections[4]" x-transition x-cloak class="space-y-1 pl-3 mt-1">
+                            <a href="#" class="flex items-center space-x-3 p-3 text-sm rounded-lg hover:bg-blue-50 text-gray-600">
+                                <svg class="w-5 h-5 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14.752 11.168l-3.197-2.132A1 1 0 0010 9.87v4.263a1 1 0 001.555.832l3.197-2.132a1 1 0 000-1.664z"></path><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
+                                <span>9. Studi Kasus Proyek Desain</span>
+                            </a>
+                            <a href="#" class="flex items-center space-x-3 p-3 text-sm rounded-lg hover:bg-blue-50 text-gray-600">
+                                <svg class="w-5 h-5 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14.752 11.168l-3.197-2.132A1 1 0 0010 9.87v4.263a1 1 0 001.555.832l3.197-2.132a1 1 0 000-1.664z"></path><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
+                                <span>10. Presentasi Proyek Desain</span>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </aside>
+        <!-- Konten Materi -->
+        <main class="w-full lg:w-2/3 flex-1">
+            <div>
+                <div class="mb-4 flex items-center gap-4 py-2">
+                    <span class="text-sm bg-blue-100 text-blue-800 px-3 py-1 rounded-full font-medium">Pendahuluan Desain Grafis</span>
+                </div>
+                <h1 class="text-3xl font-bold text-gray-900 mt-2 mb-2">Prinsip Dasar Desain Grafis</h1>
+                <!-- Video Player -->
+                <div class="rounded-lg overflow-hidden mb-6" style="aspect-ratio: 16/10;">
+                    <iframe class="w-full h-full min-h-[350px]" src="https://www.youtube.com/embed/gzfQXUEGs34" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                </div>
+                <!-- Deskripsi -->
+                <div class="py-6 text-gray-600 leading-relaxed">
+                    <p>Dalam video ini, kita akan menyelami inti dari desain grafis dengan mempelajari prinsip-prinsip fundamental yang menjadi dasar dari setiap karya visual yang hebat. Memahami konsep-konsep ini adalah kunci untuk menciptakan desain yang tidak hanya indah secara estetika, tetapi juga efektif dalam berkomunikasi.</p>
+                    <h4 class="font-semibold text-gray-800 mt-4 mb-2">Poin-poin utama yang akan dibahas:</h4>
+                    <ul class="list-disc list-inside space-y-1">
+                        <li><b>Keseimbangan (Balance):</b> Bagaimana menata elemen agar terasa stabil, baik secara simetris, asimetris, maupun radial.</li>
+                        <li><b>Kontras (Contrast):</b> Teknik menggunakan perbedaan untuk menonjolkan elemen penting dan menciptakan daya tarik visual.</li>
+                        <li><b>Hierarki (Hierarchy):</b> Cara mengarahkan mata audiens melalui desain, dari yang paling penting hingga yang kurang penting.</li>
+                        <li><b>Pengulangan (Repetition):</b> Memperkuat identitas desain dan menciptakan kesatuan visual melalui konsistensi.</li>
+                        <li><b>Kedekatan (Proximity):</b> Mengelompokkan elemen terkait untuk menciptakan hubungan visual dan kerapian.</li>
+                    </ul>
+                    <div class="mt-6 flex flex-wrap gap-4">
+                        <a href="#" download class="flex items-center gap-2 bg-blue-50 px-3 py-2 rounded-lg text-blue-700 text-sm font-medium hover:bg-blue-100 transition">
+                            <svg class="w-5 h-5 text-blue-400" fill="currentColor" viewBox="0 0 20 20">
+                                <path d="M3 16a2 2 0 002 2h10a2 2 0 002-2v-4a1 1 0 10-2 0v4H5v-4a1 1 0 10-2 0v4z"/>
+                                <path d="M7 10V4a1 1 0 112 0v6h2V4a1 1 0 112 0v6h1a1 1 0 01.707 1.707l-4 4a1 1 0 01-1.414 0l-4-4A1 1 0 015 10h2z"/>
+                            </svg>
+                            Download Document
+                        </a>
+                    </div>
+                </div>
+                
+                <!-- Tombol untuk memulai kuis -->
+                <div id="startQuizContainer" class="mt-8 p-6 bg-white rounded-lg shadow-md text-center">
+                    <h3 class="text-xl font-bold text-gray-800 mb-2">Siap Menguji Pemahaman Anda?</h3>
+                    <p class="text-gray-600 mb-4">Klik tombol di bawah ini untuk memulai kuis singkat tentang materi ini.</p>
+                    <button id="startQuizBtn" class="bg-gradient-to-r from-blue-600 to-green-500 text-white px-8 py-3 rounded-lg font-semibold text-lg hover:scale-105 hover:shadow-xl transition-all duration-300">
+                        Mulai Kuis
+                    </button>
+                </div>
+
+                <!-- Kuis Section (disembunyikan secara default) -->
+                <div class="mt-8 p-6 bg-white rounded-lg shadow-md hidden" id="quiz-section">
+                    <div class="flex justify-between items-center mb-4">
+                        <h3 class="text-xl font-bold text-gray-800">Kuis Materi</h3>
+                        <div id="quizCount" class="text-gray-600 font-medium"></div>
+                    </div>
+                    <div id="quizQuestionContainer" class="min-h-[15rem]">
+                        <!-- Soal, Opsi, atau Hasil Kuis akan muncul di sini -->
+                    </div>
+                    <div id="quizNav" class="mt-6 flex justify-between items-center">
+                        <!-- Tombol navigasi akan muncul di sini -->
+                    </div>
+                    <div id="quizScore" class="mt-4 text-center text-gray-800 font-bold text-lg"></div>
+                </div>
+                
+                <!-- Tombol Selesai -->
+                <div class="mt-6 pt-6 flex justify-end py-4">
+                    <button class="flex items-center space-x-2 bg-gradient-to-r from-emerald-500 to-blue-500 text-white px-6 py-2 rounded-lg font-semibold hover:scale-105 hover:shadow-xl transition-all">
+                        <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"></path></svg>
+                        <span>Tandai Selesai</span>
+                    </button>
+                </div>
+            </div>
+        </main>
+    </div>
+    <footer class="w-full py-4 bg-gradient-to-r from-blue-900 via-green-800 to-blue-900 text-white text-center text-sm shadow-inner">
+        &copy; 2025 INOVINDO ACADDEMY. All rights reserved.
+    </footer>
+
+    <script src="materi.js">
+    </script>
+</body>
+</html>
+

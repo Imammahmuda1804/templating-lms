@@ -48,3 +48,29 @@ body {
   transform: translateY(0);
   animation: fadeInUp 0.8s ease-out forwards;
 }
+
+
+.kartu-interaktif {
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.kartu-interaktif:hover {
+  transform: translateY(-8px); /* Mengangkat kartu sedikit ke atas */
+  box-shadow: 0 10px 20px rgba(0,0,0,0.1); /* Bayangan yang lebih besar */
+}
+
+.tombol-utama:active {
+  transform: scale(0.97); /* Sedikit mengecil saat ditekan */
+  transition: transform 0.1s ease;
+}
+
+
+/* Contoh untuk dropdown yang menggunakan class 'hidden' dari Tailwind */
+.dropdown-menu {
+  transition: opacity 0.2s ease, transform 0.2s ease;
+}
+
+.dropdown-menu.hidden {
+  opacity: 0;
+  transform: translateY(-10px);
+}
