@@ -1,96 +1,101 @@
 document.addEventListener("DOMContentLoaded", () => {
+  // --- Logika untuk Menu Mobile Dropdown ---
+  const mobileMenuButton = document.getElementById("mobile-menu-button");
+  const mobileMenu = document.getElementById("mobile-menu");
+  const hamburgerIcon = document.getElementById("hamburger-icon");
+  const closeIcon = document.getElementById("close-icon");
+
+  if (mobileMenuButton) {
+    mobileMenuButton.addEventListener("click", () => {
+      // Toggle menu visibility
+      mobileMenu.classList.toggle("hidden");
+      
+      // Toggle icons
+      hamburgerIcon.classList.toggle("hidden");
+      closeIcon.classList.toggle("hidden");
+    });
+  }
+
+  // --- Logika untuk Dropdown Profil dengan Animasi ---
   const profileButton = document.getElementById("profile-button");
   const profileDropdown = document.getElementById("profile-dropdown");
-  const profileContainer = document.getElementById("profile-container");
 
   if (profileButton) {
     profileButton.addEventListener("click", (event) => {
       event.stopPropagation();
-      profileDropdown.classList.toggle("hidden");
+      const isHidden = profileDropdown.classList.contains("hidden");
+      if (isHidden) {
+        profileDropdown.classList.remove("hidden");
+        setTimeout(() => {
+          profileDropdown.style.opacity = '1';
+          profileDropdown.style.transform = 'scale(1)';
+        }, 10);
+      } else {
+        profileDropdown.style.opacity = '0';
+        profileDropdown.style.transform = 'scale(0.95)';
+        setTimeout(() => {
+            profileDropdown.classList.add("hidden");
+        }, 200);
+      }
     });
   }
 
-  window.addEventListener('click', (event) => {
-                if (categoryContainer && !categoryContainer.contains(event.target)) {
-                    categoryDropdown.classList.add('hidden');
-                }
-                if (profileContainer && !profileContainer.contains(event.target)) {
-                    profileDropdown.classList.add('hidden');
-                }
-            });
-  // Logika untuk Dropdown Kategori
-  const categoryButton = document.getElementById("category-button");
-  const categoryDropdown = document.getElementById("category-dropdown");
-  const categoryContainer = document.getElementById("category-container");
-
-  if (categoryButton) {
-    categoryButton.addEventListener("click", (event) => {
-      event.stopPropagation();
-      categoryDropdown.classList.toggle("hidden");
-    });
-  }
-
-  window.addEventListener("click", (event) => {
-    if (categoryContainer && !categoryContainer.contains(event.target)) {
-      categoryDropdown.classList.add("hidden");
+  // Menutup dropdown jika klik di luar elemen
+  window.addEventListener("click", () => {
+    if (profileDropdown && !profileDropdown.classList.contains("hidden")) {
+      profileDropdown.style.opacity = '0';
+      profileDropdown.style.transform = 'scale(0.95)';
+      setTimeout(() => {
+        profileDropdown.classList.add("hidden");
+      }, 200);
     }
   });
 
-  // Inisialisasi Slider Kategori Teratas
-  const categoriesSwiper = new Swiper(".top-categories-slider", {
-    loop: false,
-    slidesPerView: 2,
-    spaceBetween: 24,
-    centerInsufficientSlides: true,
-    navigation: {
-      nextEl: ".top-categories-next",
-      prevEl: ".top-categories-prev",
-    },
-    breakpoints: {
-      768: { slidesPerView: 3 },
-      1024: { slidesPerView: 4 },
-    },
-  });
 
-  // Inisialisasi Slider Kursus Populer
-  const coursesSwiper = new Swiper(".popular-courses-slider", {
-    loop: false,
-    slidesPerView: 1,
-    spaceBetween: 24,
-    centerInsufficientSlides: true,
-    navigation: {
-      nextEl: ".popular-courses-next",
-      prevEl: ".popular-courses-prev",
-    },
-    breakpoints: {
-      640: { slidesPerView: 2 },
-      1024: { slidesPerView: 4 },
-    },
-  });
+  // --- INISIALISASI SEMUA SLIDER ---
+  if (typeof Swiper !== 'undefined') {
+    const categoriesSwiper = new Swiper(".top-categories-slider", {
+      loop: false,
+      spaceBetween: 16,
+      centerInsufficientSlides: true,
+      breakpoints: {
+        320: { slidesPerView: 2, spaceBetween: 10 },
+        640: { slidesPerView: 3, spaceBetween: 16 },
+        768: { slidesPerView: 4, spaceBetween: 16 },
+        1024: { slidesPerView: 5, spaceBetween: 20 },
+      },
+    });
 
-  // Inisialisasi Slider Mentor Teratas
-  const mentorsSwiper = new Swiper(".top-mentors-slider", {
-    loop: false,
-    slidesPerView: 2,
-    spaceBetween: 24,
-    centerInsufficientSlides: true,
-    navigation: {
-      nextEl: ".top-mentors-next",
-      prevEl: ".top-mentors-prev",
-    },
-    breakpoints: {
-      768: { slidesPerView: 3 },
-      1024: { slidesPerView: 5 },
-    },
-  });
+    const coursesSwiper = new Swiper(".popular-courses-slider", {
+      loop: false,
+      spaceBetween: 24,
+      centerInsufficientSlides: true,
+      breakpoints: {
+        320: { slidesPerView: 1, spaceBetween: 16 },
+        640: { slidesPerView: 2 },
+        1024: { slidesPerView: 4 },
+      },
+    });
 
-  // Logika Animasi saat Scroll dan Counter
+    const mentorsSwiper = new Swiper(".top-mentors-slider", {
+      loop: false,
+      spaceBetween: 24,
+      centerInsufficientSlides: true,
+      breakpoints: {
+        320: { slidesPerView: 2, spaceBetween: 10 },
+        768: { slidesPerView: 3 },
+        1024: { slidesPerView: 5 },
+      },
+    });
+  }
+
+  // --- LOGIKA ANIMASI & COUNTER --- 
   const scrollObserver = new IntersectionObserver(
     (entries, observer) => {
       entries.forEach((entry) => {
         if (entry.isIntersecting) {
           entry.target.classList.add("is-visible");
-          observer.unobserve(entry.target); // Hanya animasikan sekali
+          observer.unobserve(entry.target);
         }
       });
     },
@@ -102,38 +107,38 @@ document.addEventListener("DOMContentLoaded", () => {
   });
 
   const statsSection = document.getElementById("stats-section");
-  const counterObserver = new IntersectionObserver(
-    (entries, observer) => {
-      entries.forEach((entry) => {
-        if (entry.isIntersecting) {
-          const counters = document.querySelectorAll(".counter-value");
-          counters.forEach((counter) => {
-            if (counter.classList.contains("animated")) return;
-            counter.classList.add("animated");
-
-            const target = +counter.getAttribute("data-target");
-            let count = 0;
-
-            const updateCount = () => {
-              const increment = target / 100;
-              if (count < target) {
-                count = Math.ceil(count + increment);
-                counter.innerText = count.toLocaleString() + "+";
-                requestAnimationFrame(updateCount);
-              } else {
-                counter.innerText = target.toLocaleString() + "+";
-              }
-            };
-            updateCount();
-          });
-          observer.unobserve(statsSection); // Hanya animasikan counter sekali
-        }
-      });
-    },
-    { threshold: 0.5 }
-  );
-
   if (statsSection) {
+    const counterObserver = new IntersectionObserver(
+      (entries, observer) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            const counters = document.querySelectorAll(".counter-value");
+            counters.forEach((counter) => {
+              if (counter.classList.contains("animated")) return;
+              counter.classList.add("animated");
+
+              const target = +counter.getAttribute("data-target");
+              let count = 0;
+
+              const updateCount = () => {
+                const increment = target / 100;
+                if (count < target) {
+                  count = Math.ceil(count + increment);
+                  counter.innerText = count.toLocaleString() + "+";
+                  requestAnimationFrame(updateCount);
+                } else {
+                  counter.innerText = target.toLocaleString() + "+";
+                }
+              };
+              updateCount();
+            });
+            observer.unobserve(statsSection);
+          }
+        });
+      },
+      { threshold: 0.5 }
+    );
     counterObserver.observe(statsSection);
   }
 });
+

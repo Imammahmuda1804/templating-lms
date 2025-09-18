@@ -51,3 +51,13 @@ body {
   animation: infinite-scroll 60s linear infinite;
 }
 
+/* --- Gaya untuk Mobile Menu --- */
+#mobile-menu {
+  max-height: 0;
+  overflow: hidden;
+  transition: max-height 0.5s ease-in-out;
+}
+
+#mobile-menu.is-open {
+  max-height: 500px; /* Atur nilai yang cukup besar untuk menampung konten menu */
+}

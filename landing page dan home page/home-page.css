@@ -2,31 +2,6 @@ body {
   font-family: "Inter", sans-serif;
   background-color: #ffffff;
 }
-/* Style kustom untuk tombol slider */
-.swiper-button-next,
-.swiper-button-prev {
-  background-color: white;
-  border-radius: 9999px;
-  width: 40px;
-  height: 40px;
-  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
-  transition: all 0.2s ease-in-out;
-}
-.swiper-button-next:after,
-.swiper-button-prev:after {
-  font-size: 16px;
-  font-weight: 800;
-  color: #333;
-}
-.swiper-button-next:hover,
-.swiper-button-prev:hover {
-  background-color: #f0f0f0;
-  transform: scale(1.1);
-}
-.swiper-button-disabled {
-  opacity: 0.5;
-  cursor: not-allowed;
-}
 
 /* Keyframes dan class untuk animasi saat scroll */
 @keyframes fadeInUp {
@@ -49,21 +24,19 @@ body {
   animation: fadeInUp 0.8s ease-out forwards;
 }
 
-
 .kartu-interaktif {
   transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
 
 .kartu-interaktif:hover {
   transform: translateY(-8px); /* Mengangkat kartu sedikit ke atas */
-  box-shadow: 0 10px 20px rgba(0,0,0,0.1); /* Bayangan yang lebih besar */
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1); /* Bayangan yang lebih besar */
 }
 
 .tombol-utama:active {
   transform: scale(0.97); /* Sedikit mengecil saat ditekan */
   transition: transform 0.1s ease;
 }
-
 
 /* Contoh untuk dropdown yang menggunakan class 'hidden' dari Tailwind */
 .dropdown-menu {
@@ -74,3 +47,30 @@ body {
   opacity: 0;
   transform: translateY(-10px);
 }
+
+.category-card {
+  min-height: 180px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.category-card-content {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+}
+
+@media (max-width: 640px) {
+  .category-card {
+    min-height: 160px;
+  }
+}
+
+/* Menghapus aturan CSS sebelumnya untuk mentor karena sekarang 
+  konsistensi ukuran ditangani oleh struktur HTML dan kelas Tailwind.
+*/
+
