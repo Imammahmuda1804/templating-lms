@@ -9,3 +9,10 @@ signUpButton.addEventListener('click', () => {
 signInButton.addEventListener('click', () => {
     container.classList.remove("right-panel-active");
 });
+
+const signinButton = document.getElementById("signin-button");
+if (signinButton) {
+  signinButton.addEventListener("click", () => {
+    window.location.href = "/landing page dan home page/home-page.html";
+  });
+}
