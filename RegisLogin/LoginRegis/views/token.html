@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Verifikasi Token</title>
+        <link rel="stylesheet" href="../css/token.css"> 
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Montserrat:400,800">
+</head>
+<body>
+    <div class="container">
+        <h2>Masukkan Token Reset</h2>
+        <p>Silakan masukkan token yang telah dikirim ke email Anda.</p>
+        <form id="token-form">
+            <input type="text" id="token-input" placeholder="Token" required />
+            <button type="submit" id="submit-button">Verifikasi Token</button>
+            <div id="message"></div>
+        </form>
+    </div>
+
+    <script>
+        const form = document.getElementById('token-form');
+        const tokenInput = document.getElementById('token-input');
+        const messageDiv = document.getElementById('message');
+        const submitButton = document.getElementById('submit-button');
+
+        form.addEventListener('submit', (e) => {
+            e.preventDefault();
+            const token = tokenInput.value;
+
+            // Tampilkan pesan loading
+            messageDiv.textContent = 'Verifikasi token...';
+            messageDiv.className = 'visible';
+            submitButton.disabled = true;
+
+            // Simulasikan verifikasi token
+            setTimeout(() => {
+                // Contoh token yang valid
+                if (token === '123456') {
+                    messageDiv.textContent = 'Token berhasil diverifikasi! Anda sekarang dapat mengatur ulang kata sandi Anda.';
+                    messageDiv.className = 'visible success';
+                    // Di sini Anda akan mengarahkan pengguna ke halaman ganti kata sandi
+                } else {
+                    messageDiv.textContent = 'Token tidak valid. Silakan coba lagi.';
+                    messageDiv.className = 'visible error';
+                }
+                submitButton.disabled = false;
+            }, 2000); // Penundaan 2 detik untuk simulasi
+        });
+    </script>
+</body>
+</html>
